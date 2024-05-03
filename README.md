@@ -1,2 +1,2 @@
 DNF:
-max_parallel_downloads=10
+max_parallel_downloads=20
