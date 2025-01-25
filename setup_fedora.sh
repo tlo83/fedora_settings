@@ -11,6 +11,15 @@ sudo dnf update -y
 sudo dnf install -y https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
 sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 
+# Install NVIDIA drivers
+sudo dnf install -y akmod-nvidia xorg-x11-drv-nvidia-cuda vulkan vdpauinfo libva-vdpau-driver libva-utils
+
+# Check akmod status
+while [ $(ps -ef | grep akmods | grep -v grep | wc -l) -gt 0 ]; do
+    echo "Waiting for akmods to finish..."
+    sleep 5
+done
+
 # Add Flathub
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
